@@ -27,7 +27,7 @@ public class GalgjeController {
         for (Character c : this.letters)
             word.append(c);
 
-        return word + "\nYou have " + this.guessesLeft + " guesses left!";
+        return "<h1>" + word + "</h1>\n<p>You have " + this.guessesLeft + " guesses left!</p>";
     }
 
     @PostMapping
