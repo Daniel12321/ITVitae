@@ -6,7 +6,7 @@ import nl.itvitae.gog.game.Game;
 public class Tile9 extends GooseTile {
 
     public Tile9(int index) {
-        super(index, Integer.toString(index));
+        super(index);
     }
 
     @Override

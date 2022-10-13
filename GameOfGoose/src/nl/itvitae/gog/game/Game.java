@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Game {
 
-    public static boolean REQUIRE_ENTER = false;
+    public static boolean REQUIRE_ENTER = true;
     public static boolean DO_PRINTS = true;
     public static boolean DO_SLEEPS = true;
 
@@ -32,6 +32,12 @@ public class Game {
         while (this.running) {
             final Goose goose = this.geese[this.index];
             print(goose.getColor().toString());
+
+            if (REQUIRE_ENTER) {
+                System.out.println();
+                System.out.print("Press enter to roll...");
+                this.scanner.nextLine();
+            }
 
             this.moves++;
 
@@ -62,9 +68,6 @@ public class Game {
 
             if (++this.index >= this.geese.length)
                 this.index = 0;
-
-            if (REQUIRE_ENTER)
-                this.scanner.nextLine();
         }
     }
 

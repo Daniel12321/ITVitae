@@ -62,7 +62,7 @@ public class Simulator {
         final int batches = games / BATCH_SIZE;
 
         ThreadPoolExecutor pool = (ThreadPoolExecutor) Executors.newFixedThreadPool(Math.min(Math.max(1, batches), 12));
-        latch = new CountDownLatch(batches + (games % BATCH_SIZE > 1 ? 1 : 0));
+        latch = new CountDownLatch(batches + (games % BATCH_SIZE > 0 ? 1 : 0));
 
         final long beginTime = System.currentTimeMillis();
 
@@ -71,8 +71,6 @@ public class Simulator {
 
         if (games % BATCH_SIZE > 0)
             pool.submit(() -> simulate(games % BATCH_SIZE, players));
-
-//        pool.submit(() -> simulate((games % BATCH_SIZE > 0 ? games % BATCH_SIZE : BATCH_SIZE), players));
 
         try {
             latch.await();
@@ -144,7 +142,6 @@ public class Simulator {
         int row = (int) (LongStream.of(heatmap).reduce(Math::max).getAsLong() * scale / games);
 
         for (; row > 0; row--) {
-
             System.out.print(DECIMAL_FORMAT.format(row / scale) + ": ");
 
             for (int i = 0; i < 64; i++)

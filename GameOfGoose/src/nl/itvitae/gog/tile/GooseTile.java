@@ -9,10 +9,6 @@ public class GooseTile extends Tile {
         super(index, "Go");
     }
 
-    public GooseTile(int index, String mapText) {
-        super(index, mapText);
-    }
-
     @Override
     public void onArrival(Roll roll) {
         Game.println("You hit a goose tile [" + super.index + "]!");

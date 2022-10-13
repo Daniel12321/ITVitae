@@ -63,7 +63,7 @@ public class Board {
                     continue;
                 }
                 final Goose goose = this.getGoose(geese, pos);
-                System.out.print('[' + (goose != null ? goose.getColor() + "||" + Color.RESET : (pos < 10 ? " " + pos : Integer.toString(pos))) + ']');
+                System.out.print('[' + (goose != null ? goose.getColor() + "||" + Color.RESET : tiles[pos].getMapText()) + ']');
             }
             System.out.println();
         }

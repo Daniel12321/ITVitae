@@ -5,7 +5,7 @@ import nl.itvitae.gog.dice.Roll;
 public class BasicTile extends Tile {
 
     public BasicTile(int index) {
-        super(index, Integer.toString(index));
+        super(index, (index < 10 ? " " : "") + index);
     }
 
     @Override
