@@ -4,6 +4,9 @@ import nl.itvitae.gog.game.Color;
 import nl.itvitae.gog.game.Game;
 import nl.itvitae.gog.game.Goose;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
@@ -12,6 +15,7 @@ import java.util.stream.LongStream;
 
 public class Simulator {
 
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.00");
     private static final Color[] COLORS = new Color[]{Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW};
 
     private static final long[] HEATMAP = new long[64];
@@ -20,6 +24,10 @@ public class Simulator {
     private static final int BATCH_SIZE = 10_000;
     private static final Object LOCK = new Object();
     private static CountDownLatch latch;
+
+    static {
+        DECIMAL_FORMAT.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.ENGLISH));
+    }
 
     public static void main(String[] args) {
         Game.REQUIRE_ENTER = false;
@@ -136,13 +144,16 @@ public class Simulator {
         int row = (int) (LongStream.of(heatmap).reduce(Math::max).getAsLong() * scale / games);
 
         for (; row > 0; row--) {
+
+            System.out.print(DECIMAL_FORMAT.format(row / scale) + ": ");
+
             for (int i = 0; i < 64; i++)
-                System.out.print(row > heatmap[i] * scale / games ? "   " : " * ");
+                System.out.print(row > heatmap[i] * scale / games ? "   " : " █ ");
 
             System.out.println();
         }
 
-        System.out.println(" 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63");
+        System.out.println("       0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63");
 
 
 //        for (int i = 0; i < 64; i++)
