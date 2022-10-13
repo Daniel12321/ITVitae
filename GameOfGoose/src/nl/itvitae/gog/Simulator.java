@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.stream.LongStream;
 
 public class Simulator {
 
@@ -129,9 +130,23 @@ public class Simulator {
         System.out.println();
     }
 
-    private static void printHeatmap(long[] heatmap, double games) {
-        for (int i = 0; i < 64; i++)
-            System.out.println("Tile " + i + ": " + heatmap[i] + "  (" + (Math.round(heatmap[i] / games * 100) / 100.0) + " per game)");
+    private static void printHeatmap(long[] heatmap, int games) {
+        double scale = 20.0;
+
+        int row = (int) (LongStream.of(heatmap).reduce(Math::max).getAsLong() * scale / games);
+
+        for (; row > 0; row--) {
+            for (int i = 0; i < 64; i++)
+                System.out.print(row > heatmap[i] * scale / games ? "   " : " * ");
+
+            System.out.println();
+        }
+
+        System.out.println(" 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63");
+
+
+//        for (int i = 0; i < 64; i++)
+//            System.out.println("Tile " + i + ": " + heatmap[i] + "  (" + (Math.round(heatmap[i] / (double)games * 100) / 100.0) + " per game)");
     }
 
     private static void addStats(long[] heatmap, int moves, int red, int green, int blue, int yellow) {
