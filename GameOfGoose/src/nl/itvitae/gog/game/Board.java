@@ -4,7 +4,7 @@ import nl.itvitae.gog.tile.*;
 
 public class Board {
 
-    private static final int[][] MAP = {
+    private static final int[][] PRINT_MAP = {
             { 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20},
             { 33, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 19},
             { 34, -1, 60, 59, 58, 57, 56, 55, 54, 53, 52, -1, 18},
@@ -55,15 +55,15 @@ public class Board {
     public void print(Goose[] geese) {
         System.out.println(Color.PURPLE + "-------------------------------------------------------------" + Color.RESET);
 
-        for (int x = 0; x < MAP.length; x++) {
-            for (int y = 0; y < MAP[0].length; y++) {
-                int pos = MAP[x][y];
+        for (int x = 0; x < PRINT_MAP.length; x++) {
+            for (int y = 0; y < PRINT_MAP[0].length; y++) {
+                int pos = PRINT_MAP[x][y];
                 if (pos == -1) {
                     System.out.print("    ");
                     continue;
                 }
                 final Goose goose = this.getGoose(geese, pos);
-                System.out.print('[' + (goose != null ? goose.getColor() + "||" + Color.RESET : tiles[pos].getMapText()) + ']');
+                System.out.print('[' + (goose != null ? goose.getColor() + tiles[pos].getMapText() + Color.RESET : tiles[pos].getMapText()) + ']');
             }
             System.out.println();
         }
