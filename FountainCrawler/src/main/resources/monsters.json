@@ -1,0 +1,39 @@
+{
+  "types": [
+    {
+      "name": "Zombie",
+      "minDmg": 3,
+      "maxDmg": 10,
+      "minHp": 40,
+      "maxHp": 60
+    },
+    {
+      "name": "Smelly Goblin",
+      "minDmg": 5,
+      "maxDmg": 12,
+      "minHp": 50,
+      "maxHp": 60
+    },
+    {
+      "name": "Giant Wasp",
+      "minDmg": 6,
+      "maxDmg": 15,
+      "minHp": 40,
+      "maxHp": 50
+    },
+    {
+      "name": "Troll",
+      "minDmg": 8,
+      "maxDmg": 18,
+      "minHp": 40,
+      "maxHp": 90
+    },
+    {
+      "name": "Basilisk",
+      "minDmg": 10,
+      "maxDmg": 20,
+      "minHp": 60,
+      "maxHp": 100
+    }
+  ]
+}
